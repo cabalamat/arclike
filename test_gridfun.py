@@ -30,7 +30,32 @@ class T_setSquares(lintest.TestCase):
         g = Grid("01234/56789")
         g2 = setSquares(g, 2, center=[3,6]) # set all squares to 2 if 3 or 6
         r = g2.lineStr()
-        self.assertSame(r, "01224/52789", "all squares 3,6->2")
+        self.assertSame(r, ".1224/52789", "all squares 3,6->2")
+
+    def test_n(self):
+        g = Grid("...../34567/.....")
+        g2 = setSquares(g, 8, n=[3,7])
+        r = g2.lineStr()
+        self.assertSame(r, "...../34567/8...8", "if n is 3,7->8")
+
+        g = Grid("...../34567/11111")
+        g2 = setSquares(g, 8, n=[3,7])
+        r = g2.lineStr()
+        self.assertSame(r, "...../34567/81118", "if n is 3,7->8")
+
+    def test_n_center(self):
+        g = Grid("...../34567/.....")
+        g2 = setSquares(g, 8, n=[3,7], center=[0])
+        r = g2.lineStr()
+        self.assertSame(r, "...../34567/8...8",
+            "if n is 3,7 and center 0 ->8")
+
+        g = Grid("...../34567/111..")
+        g2 = setSquares(g, 8, center=[0], n=[3,7])
+        r = g2.lineStr()
+        self.assertSame(r, "...../34567/111.8",
+            "if n is 3,7 and center 0 ->8")
+
 
 #---------------------------------------------------------------------
 
