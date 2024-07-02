@@ -49,6 +49,11 @@ class Grid:
         #//for row
         return result[:-1]
 
+    def prettyStr(self) -> str:
+        """ output as pretty coloured str of this grid, including newlines """
+
+    def prettyRow(self, r: int) -> str:
+
     def copy(self) -> 'Grid':
         """ make as new Grid the same as this one """
         return Grid(self.lineStr())
