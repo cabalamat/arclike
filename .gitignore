@@ -10,5 +10,7 @@
 #### ignore directories
 __pycache__/
 .mypy_cache/
+.HIST/
+v3/
 
 #end
