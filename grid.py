@@ -53,6 +53,7 @@ class Grid:
         """ output as pretty coloured str of this grid, including newlines """
 
     def prettyRow(self, r: int) -> str:
+        """ output as a row in a pretty coloured str """
 
     def copy(self) -> 'Grid':
         """ make as new Grid the same as this one """

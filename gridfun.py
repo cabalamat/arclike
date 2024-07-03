@@ -17,7 +17,7 @@ def setSquares(g: Grid,
                se: OptGridCols =None
     ) -> Grid:
     """ output a new grid the same dimesions as (g).
-    The new grid will be a copy of the old grid, excdept where a pattern matches,
+    The new grid will be a copy of the old grid, except where a pattern matches,
     when the center square will be replaced by (newValue).
     """
     criteria = {}
