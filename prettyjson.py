@@ -8,7 +8,7 @@ import json
 
 j = json.loads(jsonStr)
 
-print(json.dumps(j,* sort_keys=True, indent=4))
+print(json.dumps(j, sort_keys=True, indent=4))
 
 
 #end
