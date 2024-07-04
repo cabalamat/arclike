@@ -5,8 +5,10 @@
 from utils.butil import *
 from utils import lintest
 
-from grid import Grid
+from grid import Grid, gridXYStr
 from gridfun import *
+
+import textblock
 
 #---------------------------------------------------------------------
 
@@ -74,6 +76,7 @@ class T_setSquares(lintest.TestCase):
         self.assertSame(r, sb, "8 if nw=1")
         prn(f"g:\n{g}")
         prn(f"g2:\n{g2}")
+        prn(gridXYStr("g->g2:", str(g), str(g2)))
 
 #---------------------------------------------------------------------
 

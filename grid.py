@@ -2,6 +2,7 @@
 
 from typing import Optional
 
+import textblock
 
 #---------------------------------------------------------------------
 """
@@ -82,6 +83,12 @@ class Grid:
             for c in range(numCols):
                 result.append((r,c))
         return result
+
+def gridXYStr(text:str, x: Grid, y: Grid) -> str:
+    """ Return a string showing thre transformation from grid (x) to
+    Grid (y). (text) is an annotation.
+    """
+    return textblock.joinTextRects(text, str(x), "->", str(y))
 
 
 def rowStr(row: list[int]) -> str:
