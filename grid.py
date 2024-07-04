@@ -15,6 +15,27 @@ OptGridCols = Optional[GridCols]
 
 
 #---------------------------------------------------------------------
+# colors
+
+from colorist import Color, BrightColor, BgColor, BgBrightColor
+
+SQUARE_TO_COLOR = [
+    (0, BrightColor.WHITE, BgColor.BLACK),
+    (1, BrightColor.WHITE, BgColor.BLUE),
+    (2, BrightColor.WHITE, BgColor.RED),
+    (3, BrightColor.WHITE, BgColor.GREEN),
+    (4, Color.BLACK,       BgBrightColor.YELLOW),
+    (5, BrightColor.WHITE, BgBrightColor.BLACK), # grey background
+    (6, BrightColor.WHITE, BgColor.MAGENTA),
+    (7, BrightColor.WHITE, BgColor.BLACK),
+    (8, Color.BLACK,       BgBrightColor.RED), # orange, use bright red
+    (9, BrightColor.WHITE, BgColor.YELLOW), # brown background
+]
+
+SQ_FCOL = [fcol for c, fcol, bcol in SQUARE_TO_COLOR]
+SQ_BCOL = [bcol for c, fcol, bcol in SQUARE_TO_COLOR]
+
+#---------------------------------------------------------------------
 
 
 class Grid:
@@ -87,6 +108,16 @@ class Grid:
 
     def ansiRow(self, r: int) -> str:
         """ output as a row in an ANSI-coloured str """
+        line = self.g[r]
+        result = ""
+        for sq in line:
+            result += SQ_FCOL[sq] + SQ_BCOL[sq]
+            if sq==0:
+                result += "."
+            else:
+                result += str(sq)
+        result += Color.DEFAULT + BgColor.DEFAULT
+        return result
 
 
 #---------------------------------------------------------------------

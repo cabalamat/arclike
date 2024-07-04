@@ -26,8 +26,9 @@ Done as `grid.gridXYStr()`.
 
 ## 2024-Jul-04
 
-Do same as `gridXYStr()` but with colours.
+Do same as `gridXYStr()` but with colours. Using the `colorist` package for this.
 
+-- got colorist basic functionaslity working in `Grid.ansiRow()`
 
 
 

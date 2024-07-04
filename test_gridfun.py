@@ -78,6 +78,10 @@ class T_setSquares(lintest.TestCase):
         prn(f"g2:\n{g2}")
         prn(gridXYStr("g->g2:", str(g), str(g2)))
 
+        g3 = Grid("..1234.2.3.4./.56789.6.7.8.")
+        prn("ansiRow(0): {}", g3.ansiRow(0))
+        prn("ansiRow(1): {}", g3.ansiRow(1))
+
 #---------------------------------------------------------------------
 
 group = lintest.TestGroup()
