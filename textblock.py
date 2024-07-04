@@ -7,7 +7,9 @@ Functions on 2-d blocks of text
 #---------------------------------------------------------------------
 """
 Example:
-textRec("foo\n1\n2", "bar", "aaaa\nbbbbbbbb\ncc\ndddd", "baz\nforth") returns:
+    textRec("foo\n1\n2", "bar", "aaaa\nbbbbbbbb\ncc\ndddd", "baz\nforth")
+
+would return:
 
 '''\
 foo bar aaaa     baz
@@ -33,7 +35,7 @@ def joinTextRects(*ss: list[str]) -> str:
         colsForSS += [c]
     #//for s
 
-    ssJust = []
+    ssJust: list[list[str]]
     for s, colForS in zip(ss, colsForSS):
         sJust = makeSize(s, numRows, colForS)
         ssJust += [sJust]
@@ -42,8 +44,7 @@ def joinTextRects(*ss: list[str]) -> str:
     result = ""
     for r in range(numRows):
         for sJust in ssJust:
-            rowStr = getRow(sJust, r)
-            result += rowStr + " "
+            result += sJust[r] + " "
         #//for sJust
         result = result[:-1] = "\n"
     #//for r
@@ -60,20 +61,20 @@ def getExtent(s: str) -> tuple[int,int]:
     return (r,c)
 
 
-def makeSize(s: str, r: int, c: int) -> str:
-    """ modify the string so it has (r) rows each with (c) columns,
-    adding spaces and newlines where necessary.
+def makeSize(s: str, r: int, c: int) -> list[str]:
+    """ Output is like (s), but it has (r) rows each with (c) columns,
+    adding spaces where necessary.
     """
-    if r==0: return ""
+    if r==0: return []
     a = s.split("\n") + [""]*r
-    result = ""
+    result = []
     doneLines = 0
     for line in a:
-        result += padTo(line, c) + "\n"
+        result += [padTo(line, c)]
         doneLines += 1
         if doneLines >= r: break
     #//for line
-    return result[:-1]
+    return result
 
 
 def padTo(s: str, x: int) -> str:
@@ -85,8 +86,6 @@ def padTo(s: str, x: int) -> str:
         return s + " "*(x-len(s))
 
 
-def getRow(s: str, r: int) -> str:
-    """ return a row of a string """
 
 
 
