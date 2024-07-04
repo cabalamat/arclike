@@ -42,14 +42,16 @@ class T_makeSize(lintest.TestCase):
 class T_joinTextRects(lintest.TestCase):
 
     def test_1(self):
-        s = "foo\n1\n2", "bar", "aaaa\nbbbbbbbb\ncc\ndddd", "baz\nforth"
-        r = joinTextRects(s)
-        sb = """\
-foo bar aaaa     baz
-1       bbbbbbbb forth
-2       cc
-        dddd
-"""
+        s1 = "foo\n1\n2"
+        s2 = "bar"
+        s3 = "aaaa\nbbbbbbbb\ncc\ndddd"
+        s4 = "baz\nforth"
+        r = joinTextRects(s1, s2, s3, s4)
+        sb = ("foo bar aaaa     baz  \n"
+              "1       bbbbbbbb forth\n"
+              "2       cc            \n"
+              "        dddd          \n")
+
         self.assertSame(r, sb, "join text rectangles")
 
 

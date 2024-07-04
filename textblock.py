@@ -4,6 +4,8 @@
 Functions on 2-d blocks of text
 """
 
+from typeguard import typechecked
+
 #---------------------------------------------------------------------
 """
 Example:
@@ -20,7 +22,8 @@ foo bar aaaa     baz
 
 """
 
-def joinTextRects(*ss: list[str]) -> str:
+@typechecked
+def joinTextRects(*ss: str) -> str:
     """ each string in (s) is a multiline string. They are put together
     horizontally next to each other.
     """
@@ -35,7 +38,7 @@ def joinTextRects(*ss: list[str]) -> str:
         colsForSS += [c]
     #//for s
 
-    ssJust: list[list[str]]
+    ssJust: list[list[str]] = []
     for s, colForS in zip(ss, colsForSS):
         sJust = makeSize(s, numRows, colForS)
         ssJust += [sJust]
@@ -46,10 +49,11 @@ def joinTextRects(*ss: list[str]) -> str:
         for sJust in ssJust:
             result += sJust[r] + " "
         #//for sJust
-        result = result[:-1] = "\n"
+        result = result[:-1] + "\n"
     #//for r
     return result
 
+@typechecked
 def getExtent(s: str) -> tuple[int,int]:
     """ return the number of rows and columns in a string """
     if s=="": return (0,0)
@@ -61,6 +65,7 @@ def getExtent(s: str) -> tuple[int,int]:
     return (r,c)
 
 
+@typechecked
 def makeSize(s: str, r: int, c: int) -> list[str]:
     """ Output is like (s), but it has (r) rows each with (c) columns,
     adding spaces where necessary.
@@ -77,6 +82,7 @@ def makeSize(s: str, r: int, c: int) -> list[str]:
     return result
 
 
+@typechecked
 def padTo(s: str, x: int) -> str:
     """ make the string exactly (x) characters lone """
     if x <= 0: return ""
