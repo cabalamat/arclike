@@ -27,35 +27,6 @@ class Grid:
         elif isinstance(initValue, str):
             self.g = gFromStr(initValue)
 
-    def __str__(self) -> str:
-        """ output a representation of this grid """
-        if not self.g: return "(empty)"
-        result = ""
-        for row in self.g:
-            result += rowStr(row) + "\n"
-        #//for
-        return result[:-1]
-
-    def lineStr(self) -> str:
-        """ outpout as line-string """
-        result = ""
-        for row in self.g:
-            for sq in row:
-                if sq==0:
-                    result += "."
-                else:
-                    result += str(sq)
-            #//for sq
-            result += "/"
-        #//for row
-        return result[:-1]
-
-    def prettyStr(self) -> str:
-        """ output as pretty coloured str of this grid, including newlines """
-
-    def prettyRow(self, r: int) -> str:
-        """ output as a row in a pretty coloured str """
-
     def copy(self) -> 'Grid':
         """ make as new Grid the same as this one """
         return Grid(self.lineStr())
@@ -84,12 +55,42 @@ class Grid:
                 result.append((r,c))
         return result
 
-def gridXYStr(text:str, x: Grid, y: Grid) -> str:
-    """ Return a string showing thre transformation from grid (x) to
-    Grid (y). (text) is an annotation.
-    """
-    return textblock.joinTextRects(text, str(x), "->", str(y))
+    #===== output as text =====
 
+    def __str__(self) -> str:
+        """ output a representation of this grid """
+        if not self.g: return "(empty)"
+        result = ""
+        for row in self.g:
+            result += rowStr(row) + "\n"
+        #//for
+        return result[:-1]
+
+    def lineStr(self) -> str:
+        """ output as line-string """
+        result = ""
+        for row in self.g:
+            for sq in row:
+                if sq==0:
+                    result += "."
+                else:
+                    result += str(sq)
+            #//for sq
+            result += "/"
+        #//for row
+        return result[:-1]
+
+    #===== output coloured using ANSI codes =====
+
+    def ansiStr(self) -> str:
+        """ output as an ANSI-coloured str of this grid, including newlines """
+
+    def ansiRow(self, r: int) -> str:
+        """ output as a row in an ANSI-coloured str """
+
+
+#---------------------------------------------------------------------
+# helper functions for grids
 
 def rowStr(row: list[int]) -> str:
     """ get a string from a row """
@@ -123,6 +124,22 @@ def gFromStr(s: str) -> list[list[int]]:
     if row:
         result.append(row)
     return result
+
+#---------------------------------------------------------------------
+
+
+def gridXYStr(text:str, x: Grid, y: Grid) -> str:
+    """ Return a string showing the transformation from grid (x) to
+    Grid (y). (text) is an annotation.
+    """
+    return textblock.joinTextRects(text, str(x), "->", str(y))
+
+def gridXYAnsi(text:str, x: Grid, y: Grid) -> str:
+    """ Like `gridXYStr` in that it return a string showing the
+    transformation from grid (x) to Grid (y). (text) is an annotation.
+    However it insrets ANSI control codes into the output for colours.
+    """
+
 
 #---------------------------------------------------------------------
 

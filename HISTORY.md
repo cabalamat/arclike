@@ -22,6 +22,13 @@ Working on displaying grids on console like this:
 
 Where "." == 0 == black.
 
-Then I will do the same thing but with colours.
+Done as `grid.gridXYStr()`.
+
+## 2024-Jul-04
+
+Do same as `gridXYStr()` but with colours.
+
+
+
 
 ----
