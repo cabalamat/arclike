@@ -27,8 +27,8 @@ SQUARE_TO_COLOR = [
     (4, Color.BLACK,       BgBrightColor.YELLOW),
     (5, BrightColor.WHITE, BgBrightColor.BLACK), # grey background
     (6, BrightColor.WHITE, BgColor.MAGENTA),
-    (7, BrightColor.WHITE, BgColor.BLACK),
-    (8, Color.BLACK,       BgBrightColor.RED), # orange, use bright red
+    (7, BrightColor.WHITE, BgBrightColor.RED), # orange, use bright red
+    (8, Color.BLACK,       BgBrightColor.CYAN), # light blue
     (9, BrightColor.WHITE, BgColor.YELLOW), # brown background
 ]
 
