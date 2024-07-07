@@ -30,6 +30,15 @@ Do same as `gridXYStr()` but with colours. Using the `colorist` package for this
 
 -- got colorist basic functionaslity working in `Grid.ansiRow()`
 
+grid.gridXYAnsi() draws 2 coloured grid (x,y) using ansi terminal colours. Working
+
+## 2024-Jul-07
+
+`setSquares()` doesn't work for off-board.
+
+`setSquares(g, 3, n=[-1])` should colour the top row colour 3 but it's not working.
+See testgridfun >> T_setSquares.test_topRow
+
 
 
 ----

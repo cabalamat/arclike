@@ -5,7 +5,7 @@
 from utils.butil import *
 from utils import lintest
 
-from grid import Grid
+from grid import Grid, gridXYAnsi
 
 #---------------------------------------------------------------------
 
@@ -71,7 +71,11 @@ class T_Grid(lintest.TestCase):
         prn(f"Grid g:\n{g}")
         prn("ansi Grid g:\n{}", g.ansiStr())
 
-
+        g2 = Grid("222..3/"
+                  "2.2..4/"
+                  "2221.5/"
+                  ".1.111")
+        prn("gridXYAnsi:\n{}", gridXYAnsi("g->g2", g, g2))
 
 
 #---------------------------------------------------------------------

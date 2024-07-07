@@ -66,6 +66,14 @@ def getExtent(s: str) -> tuple[int,int]:
 
 
 @typechecked
+def makeRightSize(s: str, r: int) -> list[str]:
+    """ Split (s) into a list of strings, where each string is the
+    same length as the longest line in (s). There most be (r) rows.
+    """
+    _, numCols = getExtent(s)
+    return makeSize(s, r, numCols)
+
+@typechecked
 def makeSize(s: str, r: int, c: int) -> list[str]:
     """ Output is like (s), but it has (r) rows each with (c) columns,
     adding spaces where necessary.
@@ -90,9 +98,6 @@ def padTo(s: str, x: int) -> str:
         return s[:x]
     else:
         return s + " "*(x-len(s))
-
-
-
 
 
 #---------------------------------------------------------------------

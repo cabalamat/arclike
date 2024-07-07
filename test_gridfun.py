@@ -5,7 +5,7 @@
 from utils.butil import *
 from utils import lintest
 
-from grid import Grid, gridXYStr
+from grid import Grid, gridXYStr, gridXYAnsi
 from gridfun import *
 
 import textblock
@@ -60,27 +60,45 @@ class T_setSquares(lintest.TestCase):
 
     def test_nw(self):
         g = Grid("......../"
-                 ".111111./"
-                 ".1....1./"
-                 ".1....1./"
-                 ".111111./"
+                 ".222222./"
+                 ".2....2./"
+                 ".2....2./"
+                 ".222222./"
                  "........")
-        g2 = setSquares(g, 8, nw=[1])
+        g2 = setSquares(g, 8, nw=[2])
         sb =    ("......../"
-                 ".111111./"
-                 ".1888888/"
-                 ".18...18/"
-                 ".1811118/"
+                 ".222222./"
+                 ".2888888/"
+                 ".28...28/"
+                 ".2822228/"
                  "..888888")
         r = g2.lineStr()
-        self.assertSame(r, sb, "8 if nw=1")
+        self.assertSame(r, sb, "8 if nw=2")
         prn(f"g:\n{g}")
         prn(f"g2:\n{g2}")
-        prn(gridXYStr("g->g2:", str(g), str(g2)))
+        prn(gridXYStr("g->g2:", g, g2))
+        prn(gridXYAnsi("g->g2:", g, g2))
+        g3 = setSquares(g2, 6, e=[2], center=[0])
+        prn(gridXYStr("g2->g3:", g2, g3))
+        prn(gridXYAnsi("g2->g3:", g2, g3))
 
-        g3 = Grid("..1234.2.3.4./.56789.6.7.8.")
-        prn("ansiRow(0): {}", g3.ansiRow(0))
-        prn("ansiRow(1): {}", g3.ansiRow(1))
+    def test_topRow(self):
+        g = Grid("....../"
+                 ".2222./"
+                 ".2132./"
+                 ".2452./"
+                 ".6789./"
+                 "......")
+        g2 = setSquares(g, 3, n=[-1]) # -1 means off-board
+        prn(gridXYAnsi("g->g2:", g, g2))
+        sb =    ("333333/"
+                 ".2222./"
+                 ".2132./"
+                 ".2452./"
+                 ".6789./"
+                 "......")
+        r = g2.lineStr()
+        self.assertSame(r, sb, "3 if n=-1")
 
 #---------------------------------------------------------------------
 

@@ -1,6 +1,7 @@
 # grid.py = Grid class
 
 from typing import Optional
+from utils.butil import form
 
 import textblock
 
@@ -82,6 +83,18 @@ class Grid:
         """
         return list(range(len(self.g)))
 
+    def extent(self) -> tuple[int, int]:
+        """ return size as (numRows, numCols) """
+        nr = self.numRows()
+        if nr==0:
+            nc = 0
+        else:
+            nc = len(self.g[0])
+        return nr, nc
+
+    def numRows(self) -> int:
+        return len(self.g)
+
 
     #===== output as text =====
 
@@ -119,6 +132,9 @@ class Grid:
 
     def ansiRow(self, r: int) -> str:
         """ output as a row in an ANSI-coloured str """
+        xr, xc = self.extent()
+        if r<0 or r>=xr:
+            return "  "*xc
         line = self.g[r]
         result = ""
         for sq in line:
@@ -181,8 +197,30 @@ def gridXYAnsi(text:str, x: Grid, y: Grid) -> str:
     transformation from grid (x) to Grid (y). (text) is an annotation.
     However it insrets ANSI control codes into the output for colours.
     """
+    numRows = 0
+    textRows, textCols = textblock.getExtent(text)
+    numRows = max(numRows, textRows)
+    for g in [x,y]:
+        numRows = max(numRows, g.numRows())
+    #//for g
+
+    textArr = textblock.makeRightSize(text, numRows)
+    arrowArr = textblock.makeRightSize("->", numRows)
+
+    result = ""
+    for r in range(numRows):
+        result += form("{} {} {} {}\n",
+            textArr[r],
+            x.ansiRow(r),
+            arrowArr[r],
+            y.ansiRow(r))
+    #//for r
+    return result
+
 
 
 #---------------------------------------------------------------------
+
+
 
 #end
