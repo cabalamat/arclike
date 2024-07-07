@@ -56,6 +56,21 @@ class T_Grid(lintest.TestCase):
         r = g.at(0,4)
         self.assertSame(r, -1, "0,4 is off-grid")
 
+    def test_printing(self):
+        g = Grid("....11...99/"
+                 ".222..33399/"
+                 ".2.2..44.9./"
+                 ".2221.5559./"
+                 ".1.11166.9./"
+                 ".1.11.66.9./"
+                 ".123456789./"
+                 ".1.1..66.9./"
+                 "9999..7779./"
+                 "9..9..88.9./"
+                 "99.9999999.")
+        prn(f"Grid g:\n{g}")
+        prn("ansi Grid g:\n{}", g.ansiStr())
+
 
 
 

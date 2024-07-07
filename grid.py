@@ -65,7 +65,7 @@ class Grid:
 
     def rowColIndexes(self) -> list[tuple[int, int]]:
         """ return a list of all the row,column indexes.
-        This should probasbly be a generator expression
+        This should probably be a generator expression
         """
         if self.g is None: return []
         numRows = len(self.g)
@@ -76,6 +76,13 @@ class Grid:
                 result.append((r,c))
         return result
 
+    def rowIndexes(self) -> list[int]:
+        """ return a list of all the row indexes.
+        This should probably be a generator expression
+        """
+        return list(range(len(self.g)))
+
+
     #===== output as text =====
 
     def __str__(self) -> str:
@@ -85,7 +92,7 @@ class Grid:
         for row in self.g:
             result += rowStr(row) + "\n"
         #//for
-        return result[:-1]
+        return result
 
     def lineStr(self) -> str:
         """ output as line-string """
@@ -105,6 +112,10 @@ class Grid:
 
     def ansiStr(self) -> str:
         """ output as an ANSI-coloured str of this grid, including newlines """
+        result = ""
+        for r in self.rowIndexes():
+            result += self.ansiRow(r) + "\n"
+        return result
 
     def ansiRow(self, r: int) -> str:
         """ output as a row in an ANSI-coloured str """
@@ -113,9 +124,9 @@ class Grid:
         for sq in line:
             result += SQ_FCOL[sq] + SQ_BCOL[sq]
             if sq==0:
-                result += "."
+                result += " ."
             else:
-                result += str(sq)
+                result += " " + str(sq)
         result += Color.DEFAULT + BgColor.DEFAULT
         return result
 
