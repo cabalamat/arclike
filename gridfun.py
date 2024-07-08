@@ -60,14 +60,9 @@ def criteriaMatch(g: Grid, r: int, c: int, criteria: dict) -> bool:
         rIx = r + rOff
         cIx = c + cOff
         valueAt = g.at(rIx, cIx)
-        if valueAt==-1:
-            # off board, so can't match
-            return False
-
         if valueAt not in criteria[dirName]:
             # value must be one of the ones specified in the criteria
             return False
-
     #//for
     return True
 

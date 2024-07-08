@@ -1,22 +1,28 @@
 # grid.py = Grid class
 
 from typing import Optional
-from utils.butil import form
+from utils.butil import form, printargs, dpr
 
 import textblock
 
 #---------------------------------------------------------------------
 """
 A 2-dimensional grid of colours
+
+Colour values in squares are 0..9.
+-1 = off-board
+-2 = transparent (for computed grids used intermediate results)
 """
 
 GridCol = int # a colour of a square in a Grid
 GridCols = list[int] # a list of Grid colours
 OptGridCols = Optional[GridCols]
+COL_OFFBOARD = -1
+COL_TRANSPARENT = -2
 
 
 #---------------------------------------------------------------------
-# colors
+# ansi colours for console display
 
 from colorist import Color, BrightColor, BgColor, BgBrightColor
 
@@ -57,12 +63,9 @@ class Grid:
         """ return the colour of the square at row r, col c.
         Returns -1 for off-grid
         """
-        if self.g is None: return -1
-        if r<0 or c<0: return -1
-        if r>=len(self.g): return -1
-        row = self.g[r]
-        if c>=len(row): return -1
-        return row[c]
+        if self.isOffBoard(r, c): return COL_OFFBOARD
+        #dpr("self={} r={} c={}", self.lineStr(), r, c)
+        return self.g[r][c]
 
     def rowColIndexes(self) -> list[tuple[int, int]]:
         """ return a list of all the row,column indexes.
@@ -91,6 +94,15 @@ class Grid:
         else:
             nc = len(self.g[0])
         return nr, nc
+
+    def isOffBoard(self, r: int, c: int) -> bool:
+        """ is location (r,c) off board? """
+        if r<0 or c<0: return True
+        nr, nc = self.extent()
+        #dpr("self={} r={} c={} nr={} nc={}", self.lineStr(), r, c, nr, nc)
+        if r>=nr or c>=nc: return True
+        return False
+
 
     def numRows(self) -> int:
         return len(self.g)

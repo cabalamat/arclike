@@ -37,7 +37,10 @@ grid.gridXYAnsi() draws 2 coloured grid (x,y) using ansi terminal colours. Worki
 `setSquares()` doesn't work for off-board.
 
 `setSquares(g, 3, n=[-1])` should colour the top row colour 3 but it's not working.
-See testgridfun >> T_setSquares.test_topRow
+See testgridfun >> T_setSquares.test_topRow -- FIXED
+
+
+
 
 
 

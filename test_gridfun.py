@@ -100,6 +100,41 @@ class T_setSquares(lintest.TestCase):
         r = g2.lineStr()
         self.assertSame(r, sb, "3 if n=-1")
 
+    def test_edgesCorners(self):
+        g = Grid("....../"
+                 "....../"
+                 ".1234./"
+                 "....../"
+                 "....../"
+                 "......")
+        g2 = setSquares(g, 7, n=[-1])
+        g3 = setSquares(g2, 7, e=[-1])
+        g4 = setSquares(g3, 7, s=[-1])
+        g5 = setSquares(g4, 7, w=[-1])
+        prn(gridXYAnsi("g->g5:", g, g5))
+        sb =    ("777777/"
+                 "7....7/"
+                 "712347/"
+                 "7....7/"
+                 "7....7/"
+                 "777777")
+        r = g5.lineStr()
+        self.assertSame(r, sb, "7 if n/s/e/w=-1")
+
+        g6 = setSquares(g5, 6, n=[-1], w=[-1])
+        g7 = setSquares(g6, 6, n=[-1], e=[-1])
+        g8 = setSquares(g7, 6, s=[-1], w=[-1])
+        g9 = setSquares(g8, 6, s=[-1], e=[-1])
+        prn(gridXYAnsi("g5->g9:", g5, g9))
+        sb =    ("677776/"
+                 "7....7/"
+                 "712347/"
+                 "7....7/"
+                 "7....7/"
+                 "677776")
+        r = g9.lineStr()
+        self.assertSame(r, sb, "6 if at corner")
+
 #---------------------------------------------------------------------
 
 group = lintest.TestGroup()
