@@ -39,7 +39,12 @@ grid.gridXYAnsi() draws 2 coloured grid (x,y) using ansi terminal colours. Worki
 `setSquares(g, 3, n=[-1])` should colour the top row colour 3 but it's not working.
 See testgridfun >> T_setSquares.test_topRow -- FIXED
 
+## 2024-Jul-08
 
+TODO: write `Problem` class. A Problem is a set of 2 grids, representing the
+input to and output from a function.
+
+Then I can work on solving problems...
 
 
 

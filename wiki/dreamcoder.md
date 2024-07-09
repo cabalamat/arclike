@@ -2,7 +2,7 @@
 
 [Dreamcoder](https://github.com/ellisk42/ec) is an AI program that solves problems by creating a function to solve a task. 
 
-It is written in Python and OCaml and wrtites its programs in a dialect of Lisp. Here's an [example program](https://github.com/ellisk42/ec/blob/master/PBE_Strings_Track/phone.sl) it created:
+It is written in Python and OCaml and writes its programs in a dialect of Lisp. Here's an [example program](https://github.com/ellisk42/ec/blob/master/PBE_Strings_Track/phone.sl) it created:
 
 ```lisp
 (set-logic SLIA)
