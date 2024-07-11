@@ -34,7 +34,7 @@ SQUARE_TO_COLOR = [
     (4, Color.BLACK,       BgBrightColor.YELLOW),
     (5, BrightColor.WHITE, BgBrightColor.BLACK), # grey background
     (6, BrightColor.WHITE, BgColor.MAGENTA),
-    (7, BrightColor.WHITE, BgBrightColor.RED), # orange, use bright red
+    (7, Color.BLACK,       BgBrightColor.RED), # orange, use bright red
     (8, Color.BLACK,       BgBrightColor.CYAN), # light blue
     (9, BrightColor.WHITE, BgColor.YELLOW), # brown background
 ]
@@ -46,12 +46,11 @@ SQ_BCOL = [bcol for c, fcol, bcol in SQUARE_TO_COLOR]
 
 
 class Grid:
-
-    g: Optional[list[list[int]]] = None
+    g: list[list[int]] = []
 
     def __init__(self, initValue=None):
         if isinstance(initValue, list):
-            self.g = makeCopy(initValue)
+            self.g = initValue
         elif isinstance(initValue, str):
             self.g = gFromStr(initValue)
 

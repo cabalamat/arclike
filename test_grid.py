@@ -17,6 +17,13 @@ class T_Grid(lintest.TestCase):
         self.assertSame(g.g, [[1,2,3], [4,5,6], [0,0,9]],
             "create grid from line-string")
 
+    def test_creationFromList(self):
+        data = [[1,2,3,3], [4,5,6,6], [0,0,9,0]]
+        g = Grid(data)
+        prn("Grid g:\n{}", g.ansiStr())
+        self.assertSame(g.g, [[1,2,3,3], [4,5,6,6], [0,0,9,0]],
+            "create grid from list")
+
     def test_lineStr(self):
         """ the lineStr() method """
         g = Grid(".3./456/.3.")
@@ -76,6 +83,9 @@ class T_Grid(lintest.TestCase):
                   "2221.5/"
                   ".1.111")
         prn("gridXYAnsi:\n{}", gridXYAnsi("g->g2", g, g2))
+
+
+#---------------------------------------------------------------------
 
 
 #---------------------------------------------------------------------

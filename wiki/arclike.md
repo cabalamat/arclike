@@ -2,6 +2,43 @@
 
 Some notes on my program **Arclike**, Which is available on <i class='fab fa-github'></i> Github at <https://github.com/cabalamat/arclike>.
 
+[TOC]
+
+## Terminology
+
+A **problem** consists of multiple **tasks**, each of which can be a **training** task or a **test** task. Here is a problem with 3 training tasks and 1 test task:
+
+
+```json
+{"train": [
+    {"input":  [[1, 0, 0, 5, 0, 1, 0], 
+                [0, 1, 0, 5, 1, 1, 1], 
+                [1, 0, 0, 5, 0, 0, 0]], 
+     "output": [[0, 0, 0], 
+                [0, 2, 0], 
+                [0, 0, 0]]}, 
+    {"input":  [[1, 1, 0, 5, 0, 1, 0], 
+                [0, 0, 1, 5, 1, 1, 1], 
+                [1, 1, 0, 5, 0, 1, 0]], 
+     "output": [[0, 2, 0], 
+                [0, 0, 2], 
+                [0, 2, 0]]}, 
+    {"input":  [[0, 0, 1, 5, 0, 0, 0], 
+                [1, 1, 0, 5, 1, 0, 1], 
+                [0, 1, 1, 5, 1, 0, 1]], 
+     "output": [[0, 0, 0], 
+                [2, 0, 0],  
+                [0, 0, 2]]}], 
+ "test": [
+    {"input":  [[1, 0, 1, 5, 1, 0, 1], 
+                [0, 1, 0, 5, 1, 0, 1], 
+                [1, 0, 1, 5, 0, 1, 0]], 
+     "output": [[2, 0, 2], 
+                [0, 0, 0], 
+                [0, 0, 0]]}]}
+```
+
+
 ## Program Structure
 
 ## Road Map
@@ -15,8 +52,8 @@ them on the console, e.g.:
 
 Some grid functions (functions which act on Grids) in `gridfun.py`.
 
-A `Problem` class that holds a problem, i.e. a set of inputs and their corresponding outputs, plus one or more inputs without outputs (called *questions*), where 
-the task is to find the output for those inputs.
+A `Problem` class that holds a problem, i.e. a set of training tasks, plus one or more inputs without outputs (called *tests*), where 
+the job of the AI is to find the output for those inputs.
 
 Reading problems from the JSON files in the [ARC-AGI repository](arc_agi_repository).
 
