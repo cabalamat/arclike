@@ -5,8 +5,6 @@ Tests the infrastructure of gridlike, i.e. everything except the
 AI that solves the problem.
 """
 
-
-from utils.butil import *
 from utils import lintest
 
 #---------------------------------------------------------------------

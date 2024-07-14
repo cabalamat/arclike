@@ -42,11 +42,12 @@ See testgridfun >> T_setSquares.test_topRow -- FIXED
 ## 2024-Jul-08
 
 TODO: write `Problem` class. A Problem is a set of 2 grids, representing the
-input to and output from a function.
-
-Then I can work on solving problems...
+input to and output from a function. -- DONE
 
 
+## 2024-Jul-14
 
+Started working on <patrec.py> which will contain pattern recognisers.
+The first patrec will be a very simple one that changes all squares that're one colour to another.
 
 ----

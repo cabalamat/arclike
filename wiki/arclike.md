@@ -41,6 +41,37 @@ A **problem** consists of multiple **tasks**, each of which can be a **training*
 
 ## Program Structure
 
+### grid.py
+
+Implements `Grid`, a 2-dimensional array of coloured squares.
+
+### gridfun.py
+
+Contains grid functions, i.e. functions that act on grids.
+
+### problem.py
+
+Implements `Problem` which contains multiple `Task` instances.
+
+### patrec.py
+
+Implements **pattern recognisers** (**patrecs**). These look at input grids and output grids and suggest a function that, given the input(s) will
+produce something similar to the outputs. Them the result of this function can be used by other patrecs until a full solution is achieved.
+
+The first patrec will be a very simple one that changes all squares that're one colour to another.
+
+Consider the following problem, with these training tasks:
+
+```
+train[0]  ..1234..  -> ..8234.. 
+          566..777     566..999
+          ....1111     ....8888
+```
+Here, everywhere that was 1 becomes 8, and every 7 becomes 9.
+
+The patrec will suggest a function converting 1->8, and then on the output of that function it will suggest another function converting 7->9.
+These functions will be chained together to form the final **solution function**.
+
 ## Road Map
 
 Arclike will be developed in this order:

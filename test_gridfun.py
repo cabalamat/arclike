@@ -1,7 +1,5 @@
 # test_gridfun.py = test <gridfun.py>
 
-
-
 from utils.butil import *
 from utils import lintest
 
