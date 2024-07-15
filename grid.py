@@ -204,7 +204,7 @@ def gridXYStr(text:str, x: Grid, y: Grid) -> str:
     return textblock.joinTextRects(text, str(x), "->", str(y))
 
 def gridXYAnsi(text:str, x: Grid, y: Grid) -> str:
-    """ Like `gridXYStr` in that it return a string showing the
+    """ Like `gridXYStr()` in that it returns a string showing the
     transformation from grid (x) to Grid (y). (text) is an annotation.
     However it insrets ANSI control codes into the output for colours.
     """

@@ -45,7 +45,7 @@ A **problem** consists of multiple **tasks**, each of which can be a **training*
 
 Implements `Grid`, a 2-dimensional array of coloured squares.
 
-### gridfun.py
+### gridfun.py = grid functions
 
 Contains grid functions, i.e. functions that act on grids.
 
@@ -53,7 +53,7 @@ Contains grid functions, i.e. functions that act on grids.
 
 Implements `Problem` which contains multiple `Task` instances.
 
-### patrec.py
+### patrec.py = pattern recogniser
 
 Implements **pattern recognisers** (**patrecs**). These look at input grids and output grids and suggest a function that, given the input(s) will
 produce something similar to the outputs. Them the result of this function can be used by other patrecs until a full solution is achieved.
@@ -71,6 +71,11 @@ Here, everywhere that was 1 becomes 8, and every 7 becomes 9.
 
 The patrec will suggest a function converting 1->8, and then on the output of that function it will suggest another function converting 7->9.
 These functions will be chained together to form the final **solution function**.
+
+### funrack.py = function rack
+
+The function rack is short-term memory where functions that's part of the solution to as task are held.
+
 
 ## Road Map
 
