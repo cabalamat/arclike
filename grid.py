@@ -19,6 +19,7 @@ GridCols = list[int] # a list of Grid colours
 OptGridCols = Optional[GridCols]
 COL_OFFBOARD = -1
 COL_TRANSPARENT = -2
+COL_MAX = 9 # colours go from 0 to COL_MAX
 
 
 #---------------------------------------------------------------------

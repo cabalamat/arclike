@@ -68,6 +68,24 @@ def criteriaMatch(g: Grid, r: int, c: int, criteria: dict) -> bool:
 
 
 #---------------------------------------------------------------------
+# rotation functions
+
+def rotc(g: Grid) -> Grid:
+    """ rotate clockwise """
+    yg = list(zip(*g.g[::-1]))
+    return Grid(yg)
+
+def rotc2(g: Grid) -> Grid:
+    """ rotate through 180 degrees (i.e. clockwise twice) """
+    yg = [r[::-1] for r in g.g[::-1]]
+    return Grid(yg)
+
+def rotc3(g: Grid) -> Grid:
+    """ rotate anti-clockwise (i.e. clockwise three times) """
+    return rotc(rotc2(g))
+
+
+#---------------------------------------------------------------------
 
 #---------------------------------------------------------------------
 

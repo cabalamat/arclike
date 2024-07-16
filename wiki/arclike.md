@@ -74,7 +74,7 @@ These functions will be chained together to form the final **solution function**
 
 ### funrack.py = function rack
 
-The function rack is short-term memory where functions that's part of the solution to as task are held.
+The function rack is short-term memory where functions that're part of the solution to a task are held.
 
 
 ## Road Map

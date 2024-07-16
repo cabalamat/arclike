@@ -135,8 +135,53 @@ class T_setSquares(lintest.TestCase):
 
 #---------------------------------------------------------------------
 
+class T_rotation(lintest.TestCase):
+    """ test rotation functions """
+
+    def test_rotc(self):
+        g = Grid("..../"
+                 ".617/"
+                 ".889")
+        g2 = rotc(g)
+        prn(gridXYAnsi("rotc:", g, g2))
+        sb = ".../86./81./97."
+        self.assertSame(g2.lineStr(), sb, "rotate clockwise")
+
+    def test_rotc2(self):
+        g = Grid("..../"
+                 ".617/"
+                 ".889")
+        g2 = rotc2(g)
+        prn(gridXYAnsi("rotc2:", g, g2))
+        sb = "988./716./...."
+        self.assertSame(g2.lineStr(), sb, "rotate 180")
+
+        g3 = rotc(rotc(g))
+        prn(gridXYAnsi("rotc*2:", g, g3))
+        self.assertSame(g3.lineStr(), sb, "rotate clockwise twice")
+
+    def test_rotc3(self):
+        g = Grid("..../"
+                 ".617/"
+                 ".889")
+        g2 = rotc3(g)
+        prn(gridXYAnsi("rotc3:", g, g2))
+        sb = ".79/.18/.68/..."
+        self.assertSame(g2.lineStr(), sb, "rotate -90")
+
+        g3 = rotc(rotc(rotc(g)))
+        prn(gridXYAnsi("rotc*3:", g, g3))
+        self.assertSame(g3.lineStr(), sb, "rotate clockwise three times")
+
+
+
+
+
+#---------------------------------------------------------------------
+
 group = lintest.TestGroup()
 group.add(T_setSquares)
+group.add(T_rotation)
 
 if __name__=='__main__': group.run()
 

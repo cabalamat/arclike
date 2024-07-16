@@ -16,3 +16,7 @@ The [ARC Prize](https://arcprize.org/) is a $1 million prize for solving ARC pro
 * [ARC-AGI](https://github.com/fchollet/ARC-AGI) repository on Github; My [notes](arc_agi_repository) on it
 * [[List of solutions]] to the ARC Challenge
 
+## About this wiki
+
+This wiki is created with my [CatWiki](https://github.com/cabalamat/catwiki_p3) software, and best viewed through that software. Since it 
+consists of simple Markdown files you can look at it using any Markdown reader.
