@@ -10,48 +10,45 @@ from patrec import gridLoss # unit under test
 
 #---------------------------------------------------------------------
 
-class T_miscFuns(lintest.TestCase):
-    """ test miscellaneous functions """
+class T_gridLoss(lintest.TestCase):
+    """ test the groidLoss function """
+
+    def testGridLoss(self, g1, g2, sb):
+        r = gridLoss(g1, g2)
+        prn(gridXYAnsi(f"gridLoss sb {sb} is {r}", g1, g2))
+        self.assertSame(r, sb, "testing gridLoss()")
+        r2 = gridLoss(g2, g1)
+        self.assertSame(r2, r, "same gridLoss() when arguments reversed")
 
     def test_gridLoss_same(self):
         """ test gridLoss when given the same grid """
         g1 = Grid("66/77")
         gt = Grid("66/77")
-        r = gridLoss(g1, gt)
-        prn(gridXYAnsi("gridLoss sb 0", g1, gt))
-        self.assertSame(r, 0, "both grids same")
+        self.testGridLoss(g1, gt, 0)
 
         g1 = Grid(".33./3..3/.44./2..2/.22.")
         gt = Grid(".33./3..3/.44./2..2/.22.")
-        r = gridLoss(g1, gt)
-        prn(gridXYAnsi("gridLoss sb 0", g1, gt))
-        self.assertSame(r, 0, "both grids same")
+        self.testGridLoss(g1, gt, 0)
 
     def test_gridLoss_targetBigger(self):
-        """ the target is bigger, should look at squares that exist in target,
-        penalize g1 for all square's its missing,
-        then add 1 for different size. """
+        """ the target is bigger """
         g1 = Grid("66/77")
         gt = Grid("66./77./...")
-        r = gridLoss(g1, gt)
-        prn(gridXYAnsi("gridLoss sb 6", g1, gt))
-        self.assertSame(r, 6, "5 sq missing + different extent")
+        self.testGridLoss(g1, gt, 2)
 
-    def test_gridLoss_gBigger(self):
-        """ the (g) arg is bigger, should look at squares that exist in target,
-        check on squares in g that're within target's extent,
-        then add 1 for different size. """
-        g1 = Grid("66./77./...")
-        gt = Grid("66/77")
-        r = gridLoss(g1, gt)
-        prn(gridXYAnsi("gridLoss sb 1", g1, gt))
-        self.assertSame(r, 1, "different extent")
+    def test_gridLoss_same(self):
+        """ test gridLoss when given the same grid """
+        g1 = Grid(".123./.456./.789.")
+        gt = Grid(".444./.555./.666.")
+        self.testGridLoss(g1, gt, 8)
+
+
 
 
 #---------------------------------------------------------------------
 
 group = lintest.TestGroup()
-group.add(T_miscFuns)
+group.add(T_gridLoss)
 
 if __name__=='__main__': group.run()
 

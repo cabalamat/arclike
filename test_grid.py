@@ -5,6 +5,7 @@
 from utils.butil import *
 from utils import lintest
 
+import grid
 from grid import Grid, gridXYAnsi
 
 #---------------------------------------------------------------------
@@ -87,11 +88,30 @@ class T_Grid(lintest.TestCase):
 
 #---------------------------------------------------------------------
 
+class T_functions(lintest.TestCase):
+    """ test functions in the grid module """
+
+    def test_commonExtent(self):
+        r = grid.commonExtent((2,2), (7,7))
+        sb = (2,2)
+        self.assertSame(r, sb, "(2,2), (7,7) -> (2,2)")
+
+        r = grid.commonExtent((2,7), (8,3))
+        sb = (2,3)
+        self.assertSame(r, sb, "(2,7), (8,3) -> (2,3)")
+
+    def test_extentIterator(self):
+        r = list(grid.extentIterator( (2,3) ))
+        sb = [ (0,0), (0,1), (0,2),
+               (1,0), (1,1), (1,2)
+             ]
+        self.assertSame(r, sb)
 
 #---------------------------------------------------------------------
 
 group = lintest.TestGroup()
 group.add(T_Grid)
+group.add(T_functions)
 
 if __name__=='__main__': group.run()
 

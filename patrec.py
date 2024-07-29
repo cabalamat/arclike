@@ -68,17 +68,25 @@ def gridLoss(g: Grid, target: Grid) -> int:
     the (target).
     0 = the same
     higher numbers mean less similar.
+    Note that gridLoss(a,b) should equal gridLoss(b,a).
+
+    A loss of 1 is added for each 1 difference in row/column size and for
+    each square in the common extent with a different value.
     """
-    loss = 0
-    for tr, tc in target.rowColIndexes():
-        if g.at(tr, tc) != target.at(tr, tc):
+    ex1 = g.extent()
+    ex2 = target.extent()
+    cex = grid.commonExtent(ex1, ex2)
+
+    # differences in extent rows/columns:
+    loss = abs(ex1[0]-ex2[0]) + abs(ex1[1]-ex2[1])
+
+    for r, c in grid.extentIterator(cex):
+        if g.at(r, c) != target.at(r, c):
             loss += 1
     #//for tc, tr
-    if g.extent() != target.extent():
-        loss += 1
     return loss
 
-def makeColTable() -> list[list[int]:
+def makeColTable() -> list[list[int]]:
     """ return a colour change table, initialised to zeroes """
     size = grid.COL_MAX + 1
     result = []

@@ -7,6 +7,9 @@ The [ARC Prize](https://arcprize.org/) is a $1 million prize for solving ARC pro
 * Notes on my [[arclike]] program
 * [[Similar problems to ARC-AGI]]
 
+## General thoughts on AI
+
+* [[The Bitter Lesson]]
 
 ## See also 
 

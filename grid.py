@@ -1,6 +1,8 @@
 # grid.py = Grid class
 
 from typing import Optional
+from collections.abc import Iterator
+
 from utils.butil import form, printargs, dpr
 
 import textblock
@@ -21,6 +23,11 @@ COL_OFFBOARD = -1
 COL_TRANSPARENT = -2
 COL_MAX = 9 # colours go from 0 to COL_MAX
 
+# a (row,col) location of a square in a Grid:
+RowCol = tuple[int,int]
+
+# number of rows and number of columns in a Grid:
+Extent = tuple[int,int]
 
 #---------------------------------------------------------------------
 # ansi colours for console display
@@ -67,18 +74,18 @@ class Grid:
         #dpr("self={} r={} c={}", self.lineStr(), r, c)
         return self.g[r][c]
 
-    def rowColIndexes(self) -> list[tuple[int, int]]:
+    def rowColIndexes(self) -> Iterator[RowCol]:
         """ return a list of all the row,column indexes.
         This should probably be a generator expression
         """
         if self.g is None: return []
         numRows = len(self.g)
         numCols = 0 if numRows==0 else len(self.g[0])
-        result = []
         for r in range(numRows):
             for c in range(numCols):
-                result.append((r,c))
-        return result
+                yield (r,c)
+            #//for c
+        #//for r
 
     def rowIndexes(self) -> list[int]:
         """ return a list of all the row indexes.
@@ -86,7 +93,7 @@ class Grid:
         """
         return list(range(len(self.g)))
 
-    def extent(self) -> tuple[int, int]:
+    def extent(self) -> Extent:
         """ return size as (numRows, numCols) """
         nr = self.numRows()
         if nr==0:
@@ -194,6 +201,29 @@ def gFromStr(s: str) -> list[list[int]]:
     if row:
         result.append(row)
     return result
+
+
+def commonExtent(ex1: Extent, ex2: Extent) -> Extent:
+    """ Return the extent the 2 grids have in common, i.e. whichever
+    is smallest in row and column.
+    """
+    nr1, nc1 = ex1
+    nr2, nc2 = ex2
+    resultRows = min(nr1, nr2)
+    resultCols = min(nc1, nc2)
+    return (resultRows, resultCols)
+
+
+def extentIterator(ex: Extent) -> Iterator[RowCol]:
+    """ iterate over all the (row,column) locations in an Extent.
+    """
+    numRows, numCols = ex
+    for r in range(numRows):
+        for c in range(numCols):
+            yield (r,c)
+        #//for
+    #//for
+
 
 #---------------------------------------------------------------------
 

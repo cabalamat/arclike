@@ -50,4 +50,19 @@ input to and output from a function. -- DONE
 Started working on <patrec.py> which will contain pattern recognisers.
 The first patrec will be a very simple one that changes all squares that're one colour to another.
 
+## 2024-Jul-27
+
+Rewriting patrec.gridLoss function. It should give the same answer when the
+parameters are switched round.
+
+```
+    gridLoss = (number of squares different in the 2 grids)
+               + deltaHeight + deltaWidth
+```
+
+where we look at the (r,c) coords common to both grids and deltas are the
+difference in heights/widths between the 2 grids.
+
+In grid, write extentIterator().
+
 ----
