@@ -4,6 +4,32 @@ from grid import Grid, GridCol, GridCols, OptGridCols
 
 #---------------------------------------------------------------------
 
+class GridFun:
+    """ a GridFun is a function that acts on a grid producing another
+    grid. Note that all functions are deterministic and withoutr internal
+    states.
+    """
+
+    def run(self, g: Grid) -> Grid:
+        """ run the function """
+
+    def isIdempotent(self) -> bool:
+        """ an idempotent function is one where if you do it multiple times,
+        only the first time has an effect. The purpose of knowing this is to
+        reduce the size of the search tree, by not applying the same function
+        twice.
+        """
+        return False
+
+    def isOwnInverse(self) -> bool:
+        """ A function is its own inverse if for all inputs f(f(g))==g.
+        The purpose of knowing this is to reduce the size of the search
+        tree, by not applying the same function twice.
+        """
+        return False
+
+#---------------------------------------------------------------------
+
 def setSquares(g: Grid,
                newValue: GridCol,
                nw: OptGridCols =None,
@@ -86,6 +112,23 @@ def rotc3(g: Grid) -> Grid:
 
 
 #---------------------------------------------------------------------
+"""
+From <https://www.kaggle.com/code/michaelhodel/program-synthesis-starter-notebook/notebook>
+This removes rows and columns that're all the same colour.
+"""
+
+def compress_ll(grid):
+    """ removes rows and columns that're all the same colour """
+    ri = [i for i, r in enumerate(grid) if len(set(r)) == 1]
+    ci = [j for j, c in enumerate(zip(*grid)) if len(set(c)) == 1]
+    result = [[v for j, v in enumerate(r) if j not in ci]
+              for i, r in enumerate(grid) if i not in ri]
+    return result
+
+def compress(g: Grid) -> Grid:
+    newGg = compress_ll(g.g)
+    return Grid(newGg)
+
 
 #---------------------------------------------------------------------
 

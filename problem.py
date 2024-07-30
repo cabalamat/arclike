@@ -15,7 +15,7 @@ JsonAtom = Union[str, int, float, bool, None]
 
 #---------------------------------------------------------------------
 """ A Task is a combination of a Grid containing an input (x) and
-a Grid containimng tyhe correspinding output (y).
+a Grid containing the corresponding output (y).
 """
 
 class Task:

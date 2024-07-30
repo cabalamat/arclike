@@ -175,6 +175,32 @@ class T_rotation(lintest.TestCase):
 
 
 
+#---------------------------------------------------------------------
+
+class T_compress(lintest.TestCase):
+    """ test compress() function """
+
+    def test_1(self):
+        g = Grid("..../"
+                 ".617/"
+                 ".889")
+        g2 = compress(g)
+        prn(gridXYAnsi("compress:", g, g2))
+
+        g = Grid("..4.../"
+                 ".64.17/"
+                 "18489.")
+        g2 = compress(g)
+        prn(gridXYAnsi("compress:", g, g2))
+
+        g = Grid("....../"
+                 "..4.../"
+                 ".64.../"
+                 "..489./"
+                 "......")
+        g2 = compress(g)
+        prn(gridXYAnsi("compress:", g, g2))
+
 
 
 #---------------------------------------------------------------------
@@ -182,6 +208,7 @@ class T_rotation(lintest.TestCase):
 group = lintest.TestGroup()
 group.add(T_setSquares)
 group.add(T_rotation)
+group.add(T_compress)
 
 if __name__=='__main__': group.run()
 
