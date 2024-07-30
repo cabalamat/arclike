@@ -65,4 +65,16 @@ difference in heights/widths between the 2 grids.
 
 In grid, write extentIterator().
 
+## 2024-Jul-31
+
+My next goals...
+
+Goal (1): in <problem.py> get `Problem` to be able to download problems from
+various repositories of problems and prettyprint them.
+
+Also create some of my own (simple) problems.
+
+Goal (2): in <funrack.py> do a search of any two of my parameterless GridFuns
+over a problem and see what the loss function is for all of them.
+
 ----
