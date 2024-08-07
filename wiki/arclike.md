@@ -84,6 +84,8 @@ These functions will be chained together to form the final **solution function**
 
 ### funrack.py = function rack
 
+*See [[funrack.py]]*
+
 The function rack is short-term memory where functions that're part of the solution to a task are held.
 
 
