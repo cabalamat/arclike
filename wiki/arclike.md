@@ -51,6 +51,8 @@ Contains grid functions, i.e. functions that act on grids.
 
 ### problem.py
 
+*See [[problem.py]]*
+
 Implements `Problem` which contains multiple `Task` instances.
 
 ### patrec.py = pattern recogniser

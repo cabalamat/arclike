@@ -14,11 +14,11 @@ JsonArray = list['JsonValue']
 JsonAtom = Union[str, int, float, bool, None]
 
 #---------------------------------------------------------------------
-""" A Task is a combination of a Grid containing an input (x) and
+""" A Pair is a combination of a Grid containing an input (x) and
 a Grid containing the corresponding output (y).
 """
 
-class Task:
+class Pair:
     desc: str
     x: Grid
     y: Grid
@@ -32,17 +32,17 @@ class Task:
 
     def ansi(self) -> str:
         """return a string using ansi markup to prettyprint the
-        value of the Task with its training set and tests
+        value of the Pair with its training set and tests
         """
         return grid.gridXYAnsi(self.desc, self.x, self.y)
 
 
 #---------------------------------------------------------------------
 
-class Problem:
+class Task:
     name: str
-    train: list[Task]
-    test: list[Task]
+    train: list[Pair]
+    test: list[Pair]
 
     def __init__(self, name:str ="", value:Optional[JsonObject] =None):
         self.name = name
@@ -55,10 +55,10 @@ class Problem:
     def loadFromJson(self, jv: JsonObject):
         """ load this Problem from (jv) """
         for i, trainItem in enumerate(jv['train']):
-            task = Task(f"train[{i}]", trainItem)
+            task = Pair(f"train[{i}]", trainItem)
             self.train += [task]
         for i, testItem in enumerate(jv['test']):
-            task = Task(f"test[{i}]", testItem)
+            task = Pair(f"test[{i}]", testItem)
             self.test += [task]
 
 
@@ -69,11 +69,11 @@ class Problem:
         value of the Problem with its training set and tests
         """
         result = f"===== {self.name} ----- training:\n"
-        for task in self.train:
-            result += task.ansi() + "\n"
+        for pair in self.train:
+            result += pair.ansi() + "\n"
         result += "----- tests:\n"
-        for task in self.test:
-            result += task.ansi() + "\n"
+        for pair in self.test:
+            result += pair.ansi() + "\n"
         return result
 
 

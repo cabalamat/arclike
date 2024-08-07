@@ -77,4 +77,18 @@ Also create some of my own (simple) problems.
 Goal (2): in <funrack.py> do a search of any two of my parameterless GridFuns
 over a problem and see what the loss function is for all of them.
 
+## 2024-Aug-07
+
+My terminology is different from ARC-AGI's
+
+I use           | ARC-AGI uses
+--------------- | ------------
+`Problem` class | task
+`Task` class    | pair
+`Grid` class    | grid
+
+Change to using the ARC-AGI terminology
+
+
+
 ----
