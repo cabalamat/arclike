@@ -115,4 +115,7 @@ More intelligent ways of doing the above.
 
 Ways of doing the above so the AI learns, i.e. if it has done a task and subsequently gets a similar task, it recognises it is similar, and can solve it more quickly. 
 
- 
+### See also
+
+* [[Notes on Arclike architecture]] 
+
