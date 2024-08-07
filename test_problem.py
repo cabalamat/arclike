@@ -54,12 +54,12 @@ SAMPLE_TASK = {
 class T_Pair(lintest.TestCase):
 
     def test_creation(self):
-        tk = Pair("create pair", SAMPLE_PAIR)
-        self.assertSame(tk.x.at(0,3), 5, "value in input")
-        self.assertSame(tk.y.at(1,1), 2, "value in output")
-        self.assertSame(tk.y.at(1,2), 0, "value in output")
-        self.assertSame(tk.desc, "create pair", "desc")
-        prn(tk.ansi())
+        pr = Pair("create pair", SAMPLE_PAIR)
+        self.assertSame(pr.x.at(0,3), 5, "value in input")
+        self.assertSame(pr.y.at(1,1), 2, "value in output")
+        self.assertSame(pr.y.at(1,2), 0, "value in output")
+        self.assertSame(pr.desc, "create pair", "desc")
+        prn(pr.ansi())
 
 
 #---------------------------------------------------------------------
@@ -67,11 +67,18 @@ class T_Pair(lintest.TestCase):
 class T_Task(lintest.TestCase):
 
     def test_creation(self):
-        prob = Task("create task", SAMPLE_TASK)
-        self.assertSame(len(prob.train), 3, "number of training tasks")
-        self.assertSame(len(prob.test), 1, "number of tests")
-        self.assertSame(prob.name, "create task", "name")
-        prn(prob.ansi())
+        t = Task("create task", SAMPLE_TASK)
+        self.assertSame(len(t.train), 3, "number of training pairs")
+        self.assertSame(len(t.test), 1, "number of tests")
+        self.assertSame(t.name, "create task", "name")
+        prn(t.ansi())
+
+    def test_loadFromFile(self):
+        t = Task()
+        t.loadFromFile("data/arc_agi_training/007bbfb7.json")
+        self.assertSame(len(t.train), 5, "number of training pairs")
+        self.assertSame(len(t.test), 1, "number of tests")
+        prn(t.ansi())
 
 #---------------------------------------------------------------------
 

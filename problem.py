@@ -1,11 +1,20 @@
 # problem.py  = a Problem
 
 from typing import Union, Optional, Any
+import os
+import json
+
+from utils import butil
+from utils.butil import prn
 
 import grid
 from grid import Grid
 
 #---------------------------------------------------------------------
+
+# the directory this file ids in:
+PROG_DIR = os.path.dirname(os.path.realpath(__file__))
+
 
 """  Python data structures containing JSON data """
 JsonValue = Union['JsonObject', 'JsonArray', 'JsonAtom']
@@ -60,6 +69,16 @@ class Task:
         for i, testItem in enumerate(jv['test']):
             task = Pair(f"test[{i}]", testItem)
             self.test += [task]
+
+    def loadFromFile(self, pan: str):
+        """ (pan) is the pathname to a file containing a json object
+        """
+        jsonDataStr: str = butil.readFile(pan)
+        jsonData: JsonObject = json.loads(jsonDataStr)
+        if not self.name:
+            self.name = pan
+        self.loadFromJson(jsonData)
+
 
 
     #===== pretty output =====

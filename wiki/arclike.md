@@ -6,7 +6,7 @@ Some notes on my program **Arclike**, Which is available on <i class='fab fa-git
 
 ## Terminology
 
-A **problem** consists of multiple **tasks**, each of which can be a **training** task or a **test** task. Here is a problem with 3 training tasks and 1 test task:
+A **task** consists of multiple **pair**, each of which can be a **training** pair or a **test** pair. Here is a problem with 3 training pairs and 1 test pair:
 
 
 ```json
@@ -38,6 +38,14 @@ A **problem** consists of multiple **tasks**, each of which can be a **training*
                 [0, 0, 0]]}]}
 ```
 
+## Directory structure
+
+The project's top directory (`./`) contains most of the program code. Other directories are:
+
+* `./utils/` = some utility libraries
+* `./wiki/` = this wiki
+* `./data/` = data including sample problems
+* `./data/arc_agi_training/` = problems from the ARC-AGI repository in its `data/training/` directory.
 
 ## Program Structure
 
@@ -53,7 +61,7 @@ Contains grid functions, i.e. functions that act on grids.
 
 *See [[problem.py]]*
 
-Implements `Problem` which contains multiple `Task` instances.
+Implements `Task` which contains multiple `Pair` instances.
 
 ### patrec.py = pattern recogniser
 
