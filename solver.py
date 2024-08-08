@@ -1,7 +1,7 @@
-# funrack.py = function rack
+# solver.py = attempts to solve a Task
 
 """
-Functions and groups of functions that might go in the final solution
+Solver attempts to solve a task.
 """
 
 from grid import Grid
@@ -27,7 +27,7 @@ class Node:
     def getTargetOutputs(self) ->  list[Grid]:
         return self.getSolver().targetOutputs
 
-    def getFunRack(self) ->  dict[GridFun]:
+    def getFunRack(self) -> list[GridFun]:
         return self.getSolver().funRack
 
 

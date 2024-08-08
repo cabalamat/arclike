@@ -1,7 +1,7 @@
-# test_funrack.py = test <funrack.py>
+# test_solver.py = test <solver.py>
 
 
-import funrack
-from funrack import Node, Solver
+import solver
+from solver import Node, Solver
 
 #end
