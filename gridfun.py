@@ -115,18 +115,18 @@ def rotc3(g: Grid) -> Grid:
     """ rotate anti-clockwise (i.e. clockwise three times) """
     return rotc(rotc2(g))
 
-class Rotc(FunRack):
+class Rotc(GridFun):
     def run(self, g: Grid) -> Grid:
         return rotc(g)
 
-class Rotc2(FunRack):
+class Rotc2(GridFun):
     def run(self, g: Grid) -> Grid:
         return rotc2(g)
 
     def isOwnInverse(self) -> bool:
         return True
 
-class Rotc3(FunRack):
+class Rotc3(GridFun):
     def run(self, g: Grid) -> Grid:
         return rotc3(g)
 
@@ -149,7 +149,7 @@ def compress(g: Grid) -> Grid:
     newGg = compress_ll(g.g)
     return Grid(newGg)
 
-class Compress(FunRack):
+class Compress(GridFun):
     def run(self, g: Grid) -> Grid:
         return compress(g)
 

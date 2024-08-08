@@ -6,6 +6,8 @@ Solver attempts to solve a task.
 
 from grid import Grid
 from problem import Task, Pair
+import gridfun
+from gridfun import GridFun
 
 #---------------------------------------------------------------------
 """
@@ -14,13 +16,13 @@ inputs
 """
 
 class Node:
-    parent: Node
+    parent: 'Node'
     fun: GridFun
     loss: int
 
     tpy: list[Grid] = [] # outputs from the gridFun
 
-    def getSolver(self) -> Solver:
+    def getSolver(self) -> 'Solver':
         """ go up through my ancestors until we reach the solver """
         return self.parent.getSolver()
 
@@ -51,11 +53,11 @@ class Solver(Node):
         assert self.numTrainingPairs > 0
         self.tpy = [pair.x for pair in tk.train]
         self.targetOutputs = [pair.y for pair in tk.train]
-        self.funRack = gridfun.initalFunRack()
+        self.funRack = gridfun.initialFunRack()
 
     #=====
 
-    def getSolver(self) -> Solver:
+    def getSolver(self) -> 'Solver':
         return self
 
 

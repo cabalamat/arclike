@@ -310,7 +310,7 @@ def sortedKv(c: Union[Dict,List]) -> Iterator[Tuple[Any,Any]]:
         sk = sorted(d.keys())
         result = []
         for k in sk:
-            yield (k, d[k]))
+            yield (k, d[k])
 
 #---------------------------------------------------------------------
 
