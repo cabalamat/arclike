@@ -300,16 +300,17 @@ def kv(c: Union[Dict,List]) -> Iterator[Tuple[Any,Any]]:
         return c.items()
 
 
-def sortedKv(d: dict) -> List[Tuple[Any,Any]]:
-    """ return key-value pairs for a dictionary, sorted
+def sortedKv(c: Union[Dict,List]) -> Iterator[Tuple[Any,Any]]:
+    """ return key-value pairs. For a dictionary, sorted
     by key.
     """
-    sk = sorted(d.keys())
-    result = []
-    for k in sk:
-        result.append((k, d[k]))
-    #//for
-    return result
+    if isinstance(c, list):
+        return enumerate(c)
+    else:
+        sk = sorted(d.keys())
+        result = []
+        for k in sk:
+            yield (k, d[k]))
 
 #---------------------------------------------------------------------
 

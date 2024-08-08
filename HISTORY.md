@@ -79,16 +79,15 @@ over a problem and see what the loss function is for all of them.
 
 ## 2024-Aug-07
 
-My terminology is different from ARC-AGI's
+My terminology is different from ARC-AGI's. Change from my old terminology
+to ARC-AGI's, so:
 
-I use           | ARC-AGI uses
---------------- | ------------
-`Problem` class | task
-`Task` class    | pair
-`Grid` class    | grid
+Task -> Pair
+Problem -> Task
 
-Change to using the ARC-AGI terminology
+## 2024-Aug-08
 
+Change <funrack.py> to <solver.py>.
 
 
 ----

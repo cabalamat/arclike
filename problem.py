@@ -80,7 +80,6 @@ class Task:
         self.loadFromJson(jsonData)
 
 
-
     #===== pretty output =====
 
     def ansi(self) -> str:

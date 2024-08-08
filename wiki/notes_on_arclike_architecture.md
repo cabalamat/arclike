@@ -83,7 +83,7 @@ myFun :: Grid -> Grid -> Grid -> Grid
 
 Which uses partial application.
 
-Hey, maybe we should invent our our programming language for writing GridFuns! (only serious)
+Hey, maybe we should invent our our programming language for writing GridFuns! (ha ha only serious)
 
 ## Varients
 

@@ -15,9 +15,9 @@ class GridFun:
 
     def isIdempotent(self) -> bool:
         """ an idempotent function is one where if you do it multiple times,
-        only the first time has an effect. The purpose of knowing this is to
-        reduce the size of the search tree, by not applying the same function
-        twice.
+        only the first time has an effect, i.e. f(f(g))==f(g).
+        The purpose of knowing this is to reduce the size of the search
+        tree, by not applying the same function twice.
         """
         return False
 
@@ -27,6 +27,11 @@ class GridFun:
         tree, by not applying the same function twice.
         """
         return False
+
+    def __str__(self):
+        """ print a representation of me """
+        return self.__class_.__name__
+
 
 #---------------------------------------------------------------------
 
@@ -110,6 +115,21 @@ def rotc3(g: Grid) -> Grid:
     """ rotate anti-clockwise (i.e. clockwise three times) """
     return rotc(rotc2(g))
 
+class Rotc(FunRack):
+    def run(self, g: Grid) -> Grid:
+        return rotc(g)
+
+class Rotc2(FunRack):
+    def run(self, g: Grid) -> Grid:
+        return rotc2(g)
+
+    def isOwnInverse(self) -> bool:
+        return True
+
+class Rotc3(FunRack):
+    def run(self, g: Grid) -> Grid:
+        return rotc3(g)
+
 
 #---------------------------------------------------------------------
 """
@@ -117,7 +137,7 @@ From <https://www.kaggle.com/code/michaelhodel/program-synthesis-starter-noteboo
 This removes rows and columns that're all the same colour.
 """
 
-def compress_ll(grid):
+def compress_ll(grid: list[list[int]]) -> list[list[int]]:
     """ removes rows and columns that're all the same colour """
     ri = [i for i, r in enumerate(grid) if len(set(r)) == 1]
     ci = [j for j, c in enumerate(zip(*grid)) if len(set(c)) == 1]
@@ -129,6 +149,22 @@ def compress(g: Grid) -> Grid:
     newGg = compress_ll(g.g)
     return Grid(newGg)
 
+class Compress(FunRack):
+    def run(self, g: Grid) -> Grid:
+        return compress(g)
+
+
+#---------------------------------------------------------------------
+
+def initialFunRack() -> list[GridFun]:
+    """ return the initial funrack to be used by Solvers """
+    ifr = [
+        Rotc(),
+        Rotc2(),
+        Rotc3(),
+        Compress(),
+    ]
+    return ifr
 
 #---------------------------------------------------------------------
 
