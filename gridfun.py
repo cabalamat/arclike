@@ -30,7 +30,7 @@ class GridFun:
 
     def __str__(self):
         """ print a representation of me """
-        return self.__class_.__name__
+        return self.__class__.__name__
 
 
 #---------------------------------------------------------------------

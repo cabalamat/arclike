@@ -23,6 +23,10 @@ class T_Solver(lintest.TestCase):
 
     def test_creation(self):
         solv = Solver(self.tk)
+        dpr("solv.funRack=%s", solv.funRack)
+        dpr("solv.funRack:")
+        for ix, fun in kv(solv.funRack):
+            prn("[%s] %s", ix, fun)
 
 #---------------------------------------------------------------------
 

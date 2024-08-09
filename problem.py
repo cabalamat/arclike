@@ -5,7 +5,7 @@ import os
 import json
 
 from utils import butil
-from utils.butil import prn
+from utils.butil import prn, form
 
 import grid
 from grid import Grid
@@ -32,10 +32,11 @@ class Pair:
     x: Grid
     y: Grid
 
-    def __init__(self, desc: str, jv: JsonObject):
+    def __init__(self, desc: str, jv: Optional[JsonObject] =None):
         self.desc = desc
-        self.x = Grid(jv['input'])
-        self.y = Grid(jv['output'])
+        if jv:
+            self.x = Grid(jv['input'])
+            self.y = Grid(jv['output'])
 
     #===== pretty output =====
 
@@ -94,7 +95,36 @@ class Task:
             result += pair.ansi() + "\n"
         return result
 
+def makeTask(name: str,
+             train: list[tuple[str,str]],
+             test: list[tuple[str,str]]) -> Task:
+    """ Convenience function for making a task.
+    Each Pair is a tuple[str,str], with the 1st str being the
+    input, and the 2nd the output.
+    The strings use the same notation as grid.gFromStr()
+    """
+    tk = Task(name)
+    tk.train = makePairs("train", train)
+    tk.test  = makePairs("test", test)
+    return tk
 
+def makePairs(namePrefix: str, pairData: list[tuple[str,str]]) -> list[Pair]:
+    """ Make some Pairs, either training pairs or test pairs.
+    (namePrefix) is the prefix that goes with each Pair's name
+    (px) and (py) are grids, using the same notation as grid.gFromStr()
+    """
+    pairs = []
+    for ix, pxpy in butil.kv(pairData):
+        px, py = pxpy
+        gx = Grid(px)
+        gy = Grid(py)
+        name = form("{}[{}]", namePrefix, ix)
+        pair = Pair(name)
+        pair.x = gx
+        pair.y = gy
+        pairs.append(pair)
+    #//for
+    return pairs
 
 #---------------------------------------------------------------------
 

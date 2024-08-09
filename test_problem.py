@@ -5,6 +5,7 @@
 from utils.butil import *
 from utils import lintest
 
+import problem
 from problem import Pair, Task
 
 #---------------------------------------------------------------------
@@ -78,6 +79,17 @@ class T_Task(lintest.TestCase):
         t.loadFromFile("data/arc_agi_training/007bbfb7.json")
         self.assertSame(len(t.train), 5, "number of training pairs")
         self.assertSame(len(t.test), 1, "number of tests")
+        prn(t.ansi())
+
+    def test_makeTask(self):
+        t = problem.makeTask("turn right",
+            train = [("1112/...2/..33", "..1/..1/3.1/322"),
+                     ("54/00",".5/.4"),
+                    ],
+            test = [("..6../77677/..6../..6..","..7./..7./6666/..7./..7.")]
+        )
+        self.assertSame(len(t.train), 2, "# training pairs")
+        self.assertSame(len(t.test), 1, "# test pairs")
         prn(t.ansi())
 
 #---------------------------------------------------------------------

@@ -22,4 +22,4 @@ The [ARC Prize](https://arcprize.org/) is a $1 million prize for solving ARC pro
 ## About this wiki
 
 This wiki is created with my [CatWiki](https://github.com/cabalamat/catwiki_p3) software, and best viewed through that software. Since it 
-consists of simple Markdown files you can look at it using any Markdown reader.
+consists of simple Markdown files you can view it using any Markdown reader.
