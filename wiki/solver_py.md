@@ -1,6 +1,6 @@
-# funrack.py
+# solver.py
 
-Documents the `funrack.py` module of [[Arclike]], which puts together gridfuns to solve a task.
+Documents the `solver.py` module of [[Arclike]], which puts together gridfuns to solve a task.
 
 ## class Solver
 

@@ -82,11 +82,11 @@ Here, everywhere that was 1 becomes 8, and every 7 becomes 9.
 The patrec will suggest a function converting 1->8, and then on the output of that function it will suggest another function converting 7->9.
 These functions will be chained together to form the final **solution function**.
 
-### funrack.py = function rack
+### solver.py = solves the task
 
-*See [[funrack.py]]*
+*See [[solver.py]]*
 
-The function rack is short-term memory where functions that're part of the solution to a task are held.
+The `Solver` is the class that solves the task.
 
 
 ## Road Map

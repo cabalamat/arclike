@@ -81,7 +81,11 @@ class Task:
         self.loadFromJson(jsonData)
 
 
-    #===== pretty output =====
+    #===== output =====
+
+    def shortStr(self) -> str:
+        """ return a short string describing me """
+        return f"Task({self.name})"
 
     def ansi(self) -> str:
         """return a string using ansi markup to prettyprint the
