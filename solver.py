@@ -9,7 +9,7 @@ from typing import Union, Optional, Any
 from colorist import Color, BrightColor, BgColor, BgBrightColor
 
 from utils import butil
-from utils.butil import prn, dpr, form, kv
+from utils.butil import pr, prn, dpr, form, kv
 
 import grid
 from grid import Grid
@@ -85,7 +85,7 @@ class Node:
         targets: list[Grid] = self.getSolver().targetOutputs
         for ix, x in kv(xs):
             y = self.tpy[ix]
-            prn(grid.gridXYAnsi(f"[{ix}]", x, y))
+            pr(grid.gridXYAnsi(f"[{ix}]", x, y))
             targ = targets[ix]
             lossYTarg = gridLoss(y, targ)
             prn(f"loss={lossYTarg}")

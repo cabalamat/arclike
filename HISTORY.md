@@ -89,5 +89,21 @@ Problem -> Task
 
 Change <funrack.py> to <solver.py>.
 
+## 2024-Aug-10
+
+Solver now expands 1 ply.
+
+TODO:
+
+Tidy up solver code
+
+Add ability to write tasks to disk. Write tasks that exercise all the
+parameterless GridFuns; put them in a directory <very_easy/>.
+Write some more parameterless GridFuns.
+
+Write a **runner** which attempts to solve all the very_easy tasks.
+
+
+
 
 ----
