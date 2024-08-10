@@ -6,13 +6,31 @@ Solver attempts to solve a task.
 
 from typing import Union, Optional, Any
 
-from utils import butil
-from utils.butil import prn, dpr, form
+from colorist import Color, BrightColor, BgColor, BgBrightColor
 
+from utils import butil
+from utils.butil import prn, dpr, form, kv
+
+import grid
 from grid import Grid
+
 from problem import Task, Pair
+
 import gridfun
 from gridfun import GridFun
+
+from patrec import gridLoss
+
+#---------------------------------------------------------------------
+# pretty text for ansi terminals
+
+STARS = BrightColor.WHITE + BgColor.RED + "******"
+
+SOLVED = (BrightColor.WHITE
+            + STARS
+            + BgColor.GREEN + " SOLVED "
+            + STARS
+            + BgColor.DEFAULT + Color.DEFAULT)
 
 #---------------------------------------------------------------------
 """
@@ -59,6 +77,22 @@ class Node:
         (self.loss) = loss compasring (self.tpy) with targetOutputs
         """
         dpr("{} enters calcTpyEtc()", self)
+        xs: list[Grid] = self.parent.tpy
+        self.tpy = [self.fun.run(x)
+                    for x in xs]
+        dpr(f"xs -> tpy")
+        self.loss = 0
+        targets: list[Grid] = self.getSolver().targetOutputs
+        for ix, x in kv(xs):
+            y = self.tpy[ix]
+            prn(grid.gridXYAnsi(f"[{ix}]", x, y))
+            targ = targets[ix]
+            lossYTarg = gridLoss(y, targ)
+            prn(f"loss={lossYTarg}")
+            self.loss += lossYTarg
+        #//for
+        exc = SOLVED if self.loss==0 else ""
+        dpr(f"self.loss={self.loss} {exc}")
 
 
     def __str__(self):
