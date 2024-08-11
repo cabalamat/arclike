@@ -4,7 +4,7 @@
 
 The [ARC Prize](https://arcprize.org/) is a $1 million prize for solving ARC problems.
 
-* Notes on my [[arclike]] program
+* Notes on my [[Arclike]] program
 * [[Similar problems to ARC-AGI]]
 
 ## General thoughts on AI
@@ -18,6 +18,7 @@ The [ARC Prize](https://arcprize.org/) is a $1 million prize for solving ARC pro
 * [ARC prize 2024](https://www.kaggle.com/competitions/arc-prize-2024) on Kaggle
 * [ARC-AGI](https://github.com/fchollet/ARC-AGI) repository on Github; My [notes](arc_agi_repository) on it
 * [[List of solutions]] to the ARC Challenge
+* My [Arclike](https://github.com/cabalamat/arclike) repository on Github.
 
 ## About this wiki
 

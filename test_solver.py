@@ -54,7 +54,7 @@ class T_Solver(lintest.TestCase):
         #>>>>> expand one level
         solv.expand()
 
-        solv
+
 
 
 #---------------------------------------------------------------------

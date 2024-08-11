@@ -62,6 +62,16 @@ class Grid:
         elif isinstance(initValue, str):
             self.g = gFromStr(initValue)
 
+    def __eq__(self, gr):
+        """ two grids should compare the same if they have the same
+        data.
+        """
+        return self.g == gr.g
+
+    def __repr__(self):
+        s = form("Grid(%r)", self.lineStr())
+        return s
+
     def copy(self) -> 'Grid':
         """ make as new Grid the same as this one """
         return Grid(self.lineStr())

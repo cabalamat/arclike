@@ -5,7 +5,7 @@ import os
 import json
 
 from utils import butil
-from utils.butil import prn, form
+from utils.butil import prn, dpr, form
 
 import grid
 from grid import Grid
@@ -38,6 +38,18 @@ class Pair:
             self.x = Grid(jv['input'])
             self.y = Grid(jv['output'])
 
+    def __eq__(self, p):
+        dpr("self.x={}", self.x)
+        return self.x==p.x and self.y==p.y
+
+    def json(self) -> JsonObject:
+        """ return json for this Pair """
+        j = {'input':  self.x.g,
+             'output': self.y.g
+            }
+        return j
+
+
     #===== pretty output =====
 
     def ansi(self) -> str:
@@ -61,6 +73,9 @@ class Task:
         if isinstance(value, dict):
             self.loadFromJson(value)
 
+    def __eq__(self, t):
+        dpr("self.train={}", self.train)
+        return self.train==t.train and self.test==t.test
 
     def loadFromJson(self, jv: JsonObject):
         """ load this Problem from (jv) """
@@ -79,6 +94,19 @@ class Task:
         if not self.name:
             self.name = pan
         self.loadFromJson(jsonData)
+
+    def saveToFile(self, pan: str):
+        """ (pan) is the pathname to a file containing a json object
+        """
+        jsonDataStr = json.dumps(self.json(), sort_keys=True)
+        butil.writeFile(pan, jsonDataStr)
+
+    def json(self) -> JsonObject:
+        """ return JSON for this Task """
+        j = { 'train': [p.json() for p in self.train],
+              'test':  [p.json() for p in self.test],
+            }
+        return j
 
 
     #===== output =====

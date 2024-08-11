@@ -153,6 +153,47 @@ class Compress(GridFun):
     def run(self, g: Grid) -> Grid:
         return compress(g)
 
+"""
+Functions to add.
+
+remove borders when they're all the same colour, e.g.
+1111111 -> ..333
+1..3331    88...
+188...1
+1111111
+
+Remove same-colour/all borders at top/bottom/left/right
+
+Duplicate at right, e.g.:
+12 -> 1212
+34    3434
+
+Duplicate downwards:
+12 -> 12
+34    34
+      12
+      34
+
+Duplicate at right and downwards:
+12 -> 1212
+34    3434
+      1212
+      3434
+
+Stretch horizontally:
+12 -> 1122
+34    3344
+
+Stretch vertically, or both ways
+
+Add a column to the right, coppying the column next to it:
+123 -> 1233
+456    4566
+789    7899
+
+
+"""
+
 
 #---------------------------------------------------------------------
 

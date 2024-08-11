@@ -92,6 +92,19 @@ class T_Task(lintest.TestCase):
         self.assertSame(len(t.test), 1, "# test pairs")
         prn(t.ansi())
 
+    def test_saveTask(self):
+        """ save the sample task """
+
+        #>>>>> remove json files
+        self.cmd("rm -f testing/*.json")
+
+        t = Task("create task", SAMPLE_TASK)
+        t.saveToFile("testing/sample.json")
+        self.assertFileExists("testing/sample.json")
+        t2 = Task()
+        t2.loadFromFile("testing/sample.json")
+        self.assertBool(t2==t)
+
 #---------------------------------------------------------------------
 
 group = lintest.TestGroup()

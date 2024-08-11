@@ -25,6 +25,20 @@ class T_Grid(lintest.TestCase):
         self.assertSame(g.g, [[1,2,3,3], [4,5,6,6], [0,0,9,0]],
             "create grid from list")
 
+    def test_eq(self):
+        """ the equals operator __eq__ """
+        g1 = Grid("123/456/..9")
+        g2 = Grid("123/456/..9")
+        g3 = Grid("123/486/..9")
+        g4 = Grid("123/456/..9/..9")
+        self.assertSame(g1, g1, "g1==g1")
+        self.assertSame(g1, g2, "g1==g2")
+        self.assertBool(g1==g2, "g1==g2")
+        self.assertNotEqual(g1, g3, "g1!=g3")
+        self.assertNotEqual(g1, g4, "g1!=g4")
+        self.assertBool(g1!=g4, "g1!=g4")
+
+
     def test_lineStr(self):
         """ the lineStr() method """
         g = Grid(".3./456/.3.")
