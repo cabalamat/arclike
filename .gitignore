@@ -13,4 +13,7 @@ __pycache__/
 .HIST/
 v3/
 
+#### ignore .json files in testing/ dir
+testing/*.json
+
 #end

@@ -103,7 +103,7 @@ class T_Task(lintest.TestCase):
         self.assertFileExists("testing/sample.json")
         t2 = Task()
         t2.loadFromFile("testing/sample.json")
-        self.assertBool(t2==t)
+        self.assertBool(t2==t, "loaded Task (t2) same as initial Task (t)")
 
 #---------------------------------------------------------------------
 

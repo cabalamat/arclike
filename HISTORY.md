@@ -103,7 +103,9 @@ Write some more parameterless GridFuns.
 
 Write a **runner** which attempts to solve all the very_easy tasks.
 
+## 2024-Aug-11
 
+Can now save tasks to disk
 
 
 ----

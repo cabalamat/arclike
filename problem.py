@@ -39,7 +39,7 @@ class Pair:
             self.y = Grid(jv['output'])
 
     def __eq__(self, p):
-        dpr("self.x={}", self.x)
+        #dpr("self.x={}", self.x)
         return self.x==p.x and self.y==p.y
 
     def json(self) -> JsonObject:
@@ -74,7 +74,7 @@ class Task:
             self.loadFromJson(value)
 
     def __eq__(self, t):
-        dpr("self.train={}", self.train)
+        #dpr("self.train={}", self.train)
         return self.train==t.train and self.test==t.test
 
     def loadFromJson(self, jv: JsonObject):
