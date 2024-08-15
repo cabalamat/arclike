@@ -1,7 +1,7 @@
 # README.md for very_easy
 
 The `very_easy` directory contains some very easy tasks to solve, which often
-only need on parameterless `GridFun`.
+only need one parameterless `GridFun`.
 
 Task names are like:
 

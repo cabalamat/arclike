@@ -27,19 +27,26 @@ from patrec import gridLoss
 STARS = BrightColor.WHITE + BgColor.RED + "******"
 
 SOLVED = (BrightColor.WHITE
-            + STARS
-            + BgColor.GREEN + " SOLVED "
-            + STARS
-            + BgColor.DEFAULT + Color.DEFAULT)
+          + STARS
+          + BgColor.GREEN + " SOLVED "
+          + STARS
+          + BgColor.DEFAULT + Color.DEFAULT)
 
 #---------------------------------------------------------------------
 """
 A Node is the result of applying a GridFun to as series of training pair
 inputs
+
+Instance variables are:
+parent = the node that created this node
+solver = the ultimate ancestor odf this node
+fun = the gridFun, from (parent) that was used to create this node
+children = the nodes expanded from here
 """
 
 class Node:
     parent: 'Node'
+    solver: 'Solver'
     fun: GridFun
     loss: int = 0
     children: list['Node'] = [] # nodes expanded from here
@@ -67,6 +74,7 @@ class Node:
         """
         newNode = Node()
         newNode.parent = self
+        newNode.solver = self.getSolver()
         newNode.fun = gf
         newNode.calcTpyEtc()
         return newNode
@@ -101,6 +109,12 @@ class Node:
         s += self.fun.__str__()
         return s
 
+class NullNode(Node):
+    """ a NullNode is an empy node not used for anything.
+    It has one instance, (theNullNode)
+    """
+
+theNullNode = NullNode
 
 
 #---------------------------------------------------------------------
@@ -109,6 +123,8 @@ A Solver is the head-node to a Task
 """
 
 class Solver(Node):
+    parent: Node = theNullNode
+    solver: Node = theNullNode
     task: Task
     numTrainingPairs: int
     targetOutputs: list[Grid]
