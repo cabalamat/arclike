@@ -140,6 +140,17 @@ def makeTask(name: str,
     tk.test  = makePairs("test", test)
     return tk
 
+def makeTaskFromFile(dirPan: str, fn: str) -> Task:
+    """ Convenience function for making a task from a file.
+    tasks are strored in directories under data/
+    dirPan = directory pathname
+    fn = filename
+    """
+    tk = Task()
+    tk.loadFromFile(butil.join(dirPan, fn))
+    tk.name = fn
+    return tk
+
 def makePairs(namePrefix: str, pairData: list[tuple[str,str]]) -> list[Pair]:
     """ Make some Pairs, either training pairs or test pairs.
     (namePrefix) is the prefix that goes with each Pair's name

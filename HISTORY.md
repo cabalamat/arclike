@@ -107,7 +107,20 @@ Write a **runner** which attempts to solve all the very_easy tasks.
 
 Can now save tasks to disk.
 
-## 2024-Aug-13
+## 2024-Aug-19
+
+Started <runner.py> which pulls it all together and trys to solve a series
+of problems stored on disk.
+
+TODO:
+
+Fix bug where solver nodes have loss incorrectly at 0.
+
+In `Node.expand()`, made the function take a parameter depth (which defaults
+to 1) meaning the depth to expand to.
+
+The helper function `Node.expandWith()` should check that the expansion
+node we're trying to create doesn't already exist.
 
 
 

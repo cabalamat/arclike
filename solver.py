@@ -103,11 +103,32 @@ class Node:
         dpr(f"self.loss={self.loss} {exc}")
 
 
-    def __str__(self):
+    def __str__(self) -> str:
         s = self.parent.__str__()
         s += "|"
         s += self.fun.__str__()
         return s
+
+    def strWithLoss(self):
+        """ return a description string of this Node, similar to __str__
+        but with the loss in parentheses after it.
+        """
+        s = form("%s (%s)", self.__str__(), self.loss)
+        return s
+
+    def thisAndDescendents(self) -> list['Node']:
+        """ return this node and all its descendents """
+        return [self] + self.descendents()
+
+    def descendents(self) -> list['Node']:
+        """ return all the nodes descended from this one """
+        result = []
+        for child in self.children:
+            result += child.thisAndDescendents()
+        #//for
+        return result
+
+
 
 class NullNode(Node):
     """ a NullNode is an empy node not used for anything.
@@ -142,7 +163,7 @@ class Solver(Node):
 
     #===== printing
 
-    def __str__(self):
+    def __str__(self) -> str:
         #s = form("Solver({})", self.task.shortStr())
         s = "Solver"
         return s
