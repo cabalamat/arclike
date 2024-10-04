@@ -122,6 +122,14 @@ to 1) meaning the depth to expand to.
 The helper function `Node.expandWith()` should check that the expansion
 node we're trying to create doesn't already exist.
 
+## 2024-Oct-04
+
+Creating new module <node.py> to preplace <solver.py> (which incidently is
+badly named as the actually solving code will mostly go in <runner.py>.
+
+The reason for this is to separate responsibilities: <node.py> will
+know abnout nodes connecting to other nodes. It won't know about
+the `funRack` as that's the responsibility ot the solving code.
 
 
 

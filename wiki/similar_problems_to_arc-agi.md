@@ -104,7 +104,7 @@ In FP a pair is of the form
 
     input -> [box] -> output
 
-The box is opaque: you can see the input to and output from, but you can't look inside. The goal of the program is to predict what it's doing.
+The box is opaque: you can see the input to it and output from it, but you can't look inside. The goal of the program is to predict what it's doing.
 
 ### Learning
 
